@@ -18,9 +18,19 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+      - name: Select .NET 8 SDK for this runner
+        shell: pwsh
+        run: |
+          '{"sdk":{"version":"8.0.100","rollForward":"latestFeature"}}' | Set-Content -Path global.json -Encoding utf8
+          dotnet --version
+      - name: Locate Visual Studio 2022 MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: '[17.0,18.0)'
+          msbuild-architecture: x64
       - name: Build Release x64
         shell: pwsh
-        run: dotnet build S-Launcher.sln --configuration Release -p:Platform=x64 --verbosity minimal
+        run: msbuild S-Launcher.sln /restore /p:Configuration=Release /p:Platform=x64 /verbosity:minimal
       - name: Verify application and Chinese resources
         id: build-output
         shell: pwsh
