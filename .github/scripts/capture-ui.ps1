@@ -13,8 +13,23 @@ public static class UiCapture {
     [DllImport("user32.dll")] public static extern bool GetWindowRect(IntPtr hWnd, out RECT rect);
     [DllImport("user32.dll")] public static extern bool PrintWindow(IntPtr hWnd, IntPtr hdc, uint flags);
     [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr hWnd);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    public static extern IntPtr SendMessageTimeout(IntPtr hWnd, uint msg, UIntPtr wParam, string lParam, uint flags, uint timeout, out UIntPtr result);
 }
 '@
+
+$accessibilityKey = 'HKCU:\Software\Microsoft\Accessibility'
+New-Item -Path $accessibilityKey -Force | Out-Null
+New-ItemProperty -Path $accessibilityKey -Name TextScaleFactor -Value 150 -PropertyType DWord -Force | Out-Null
+$messageResult = [UIntPtr]::Zero
+[UiCapture]::SendMessageTimeout([IntPtr]0xffff, 0x1a, [UIntPtr]::Zero, 'Accessibility', 2, 1000, [ref]$messageResult) | Out-Null
+Start-Sleep -Seconds 2
+try {
+    [Windows.UI.ViewManagement.UISettings, Windows.UI.ViewManagement, ContentType = WindowsRuntime] | Out-Null
+    $uiSettings = New-Object Windows.UI.ViewManagement.UISettings
+    Write-Host "Requested text scale: 150%; reported scale: $($uiSettings.TextScaleFactor)"
+}
+catch { Write-Warning "Unable to read UISettings text scale: $_" }
 
 $outputDir = Join-Path $env:GITHUB_WORKSPACE 'ui-evidence'
 New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
