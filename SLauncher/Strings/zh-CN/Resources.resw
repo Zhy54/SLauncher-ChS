@@ -516,4 +516,124 @@
 <data name="EditItem_SaveButton" xml:space="preserve">
   <value>保存并关闭</value>
 </data>
+  <data name="AddFileDialog_SelectLabel" xml:space="preserve">
+    <value>选择要添加的文件： </value>
+  </data>
+  <data name="AddFileDialog_OpenButton" xml:space="preserve">
+    <value>打开文件</value>
+  </data>
+  <data name="AddFileDialog_ListHelp" xml:space="preserve">
+    <value>所选文件将显示在下方列表中。添加后可以重新排列文件。</value>
+  </data>
+  <data name="AddFileDialog_EmptyList" xml:space="preserve">
+    <value>未选择文件</value>
+  </data>
+  <data name="AddFolderDialog_SelectLabel" xml:space="preserve">
+    <value>选择要添加的文件夹： </value>
+  </data>
+  <data name="AddFolderDialog_OpenButton" xml:space="preserve">
+    <value>打开文件夹</value>
+  </data>
+  <data name="AddFolderDialog_ListHelp" xml:space="preserve">
+    <value>所选文件夹将显示在下方列表中。添加后可以重新排列文件夹。</value>
+  </data>
+  <data name="AddFolderDialog_EmptyList" xml:space="preserve">
+    <value>未选择文件夹</value>
+  </data>
+  <data name="AddWebsiteDialog_UrlLabel" xml:space="preserve">
+    <value>在下方输入网站 URL：</value>
+  </data>
+  <data name="AddItemsDialog_RemoveTooltip" xml:space="preserve">
+    <value>从 SLauncher 中移除</value>
+  </data>
+  <data name="LaunchArgumentsOptionalPlaceholder" xml:space="preserve">
+    <value>启动参数（可选）</value>
+  </data>
+  <data name="EditItem_PathOrUrlPlaceholder" xml:space="preserve">
+    <value>路径或 URL</value>
+  </data>
+  <data name="Group_CreateIndicator" xml:space="preserve">
+    <value>新建分组</value>
+  </data>
+  <data name="Group_AddItemIndicator" xml:space="preserve">
+    <value>将项目添加到分组</value>
+  </data>
+  <data name="Group_NameLabel" xml:space="preserve">
+    <value>分组名称：</value>
+  </data>
+  <data name="Group_RemoveFromSLauncher" xml:space="preserve">
+    <value>从 SLauncher 中移除分组</value>
+  </data>
+  <data name="LinkedFolder_UnlinkParent" xml:space="preserve">
+    <value>从 SLauncher 中取消链接父文件夹</value>
+  </data>
+  <data name="AddItemsError_Title" xml:space="preserve">
+    <value>添加项目时出错</value>
+  </data>
+  <data name="AddItemsError_Message" xml:space="preserve">
+    <value>以下项目无法加载到 SLauncher。文件或文件夹可能已被移动或删除。请确认它们位于正确的位置，然后重新添加文件或文件夹。</value>
+  </data>
+  <data name="DragDrop_AddToSLauncher" xml:space="preserve">
+    <value>添加到 SLauncher</value>
+  </data>
+  <data name="Group_DefaultName" xml:space="preserve">
+    <value>新分组</value>
+  </data>
+  <data name="IconScale_Tooltip" xml:space="preserve">
+    <value>图标缩放</value>
+  </data>
+  <data name="IconScale_AdjustTooltip" xml:space="preserve">
+    <value>调整图标缩放比例</value>
+  </data>
+  <data name="IconScale_CurrentTooltip" xml:space="preserve">
+    <value>当前缩放比例</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="PathNotFound" xml:space="preserve">
+    <value>路径不存在</value>
+  </data>
+  <data name="Search_OpenUrlError" xml:space="preserve">
+    <value>无法打开 URL：\n{query}\n\n错误：{ex.Message}</value>
+  </data>
+  <data name="Search_OpenPathError" xml:space="preserve">
+    <value>无法打开：\n{query}\n\n错误：{ex.Message}</value>
+  </data>
+  <data name="Search_PathNotFoundMessage" xml:space="preserve">
+    <value>指定的路径不存在：\n{query}\n\n请检查路径后重试。</value>
+  </data>
+  <data name="Item_RunErrorTitle" xml:space="preserve">
+    <value>运行项目时出错</value>
+  </data>
+  <data name="Item_RunErrorMessage" xml:space="preserve">
+    <value>如果你正尝试以管理员身份运行此项目，请先确认该项目支持以管理员身份运行。最后，请检查文件或文件夹是否已被移动或删除。</value>
+  </data>
+  <data name="Item_OpenLocationErrorTitle" xml:space="preserve">
+    <value>打开位置时出错</value>
+  </data>
+  <data name="Item_OpenLocationErrorMessage" xml:space="preserve">
+    <value>无法打开磁盘上的位置。请检查文件或文件夹是否已被移动或删除，或稍后重试。</value>
+  </data>
+  <data name="EditIcon_FileFilter" xml:space="preserve">
+    <value>图像文件|*.jpg;*.jpeg;*.png;*.tif;*.tiff;*.bmp;*.ico</value>
+  </data>
+  <data name="Backup_ExportFileFilter" xml:space="preserve">
+    <value>SLauncher 设置 (*.slauncherbackup)|*.slauncherbackup</value>
+  </data>
+  <data name="Backup_ImportFileFilter" xml:space="preserve">
+    <value>SLauncher 设置 (*.slauncherbackup)|*.slauncherbackup|所有文件 (*.*)|*.*</value>
+  </data>
+  <data name="Backup_InvalidFileMessage" xml:space="preserve">
+    <value>此文件不是有效的 SLauncher 设置导出文件。</value>
+  </data>
+  <data name="LinkedFolder_MissingSuffix" xml:space="preserve">
+    <value> (链接的文件夹)</value>
+  </data>
+  <data name="Legacy_DefaultTabName" xml:space="preserve">
+    <value>新标签页</value>
+  </data>
+  <data name="Legacy_NullTabNameFallback" xml:space="preserve">
+    <value>标签页 {tabIndex + 1}</value>
+  </data>
 </root>
