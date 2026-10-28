@@ -47,3 +47,16 @@ jobs:
           path: ${{ steps.build-output.outputs.directory }}
           if-no-files-found: error
           retention-days: 3
+
+      - name: Inspect windows
+        continue-on-error: true
+        shell: powershell
+        run: .github/scripts/capture-ui.ps1 -ExeDirectory "${{ steps.build-output.outputs.directory }}"
+      - name: Save UI captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLauncher-ui-evidence
+          path: ui-evidence/
+          if-no-files-found: ignore
+          retention-days: 3
