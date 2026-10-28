@@ -15,7 +15,7 @@
 | `SettingsRestartRequired` | 资源同样称语言更改需要重启；静态检索未发现直接引用，不能排除动态使用。暂保留原意，待代码和实机复核。 |
 | `EditItem_LinkTooltip` | 原文称实际路径或 URL 通常与显示文本相同；代码允许显示文本与路径分开，常见文件也可能显示文件名。中文暂忠于原文，建议后续核验后考虑删除这句。 |
 | `EditItem_SaveButton` | 英文是 `Save and Exit`，但按钮处理代码保存项目后只关闭编辑窗口；译为“保存并关闭”，避免误解为退出整个程序。 |
-| `TabDeleteWithItemsMessage` | 英文、日文、韩文资源使用字面字符 `\n`；当前加载器读取 XML 后直接 `string.Format`，未发现将其转为换行的处理。中文草稿使用实际换行，并以“移除其中的项目”描述启动器中的项目；其他语言应在后续统一核查。 |
+| `TabDeleteWithItemsMessage` | 英文、日文、韩文资源使用字面字符 `\n`；当前加载器读取 XML 后直接 `string.Format`，未发现将其转为换行的处理。中文草稿沿用原文中的字面 `\n`，并以“移除其中的项目”描述启动器中的项目。实际显示效果留待实机验证，是否统一调整所有语言格式应另行讨论。 |
 | `ToggleSwitchOn` / `ToggleSwitchOff` | 原文为 Yes / No，目前译为“是” / “否”，也可在实机确认视觉语境后讨论“开” / “关”。 |
 
 ## 术语
@@ -56,7 +56,7 @@
 | `TabRenamePlaceholder` | Enter tab name | 输入标签页名称 | タブ名を入力 | 탭 이름 입력 |
 | `TabDeleteTitle` | Confirm Tab Deletion | 确认删除标签页 | タブの削除確認 | 탭 삭제 확인 |
 | `TabDeleteMessage` | Are you sure you want to delete this tab? | 确定要删除此标签页吗？ | このタブを削除しますか？ | 이 탭을 삭제하시겠습니까? |
-| `TabDeleteWithItemsMessage` | This tab contains {0} items.\nDeleting the tab will also delete all items.\n\nAre you sure? | 此标签页包含 {0} 个项目。 ↵ 删除标签页也会移除其中的所有项目。 ↵  ↵ 确定要继续吗？ | このタブには{0}個のアイテムがあります。\nタブを削除すると、すべてのアイテムも削除されます。\n\n本当に削除しますか？ | 이 탭에는 {0}개의 항목이 있습니다.\n탭을 삭제하면 모든 항목도 함께 삭제됩니다.\n\n계속 삭제하시겠습니까? |
+| `TabDeleteWithItemsMessage` | This tab contains {0} items.\nDeleting the tab will also delete all items.\n\nAre you sure? | 此标签页包含 {0} 个项目。\n删除标签页也会移除其中的所有项目。\n\n确定要继续吗？ | このタブには{0}個のアイテムがあります。\nタブを削除すると、すべてのアイテムも削除されます。\n\n本当に削除しますか？ | 이 탭에는 {0}개의 항목이 있습니다.\n탭을 삭제하면 모든 항목도 함께 삭제됩니다.\n\n계속 삭제하시겠습니까? |
 | `TabCannotDeleteTitle` | Cannot Delete | 无法删除 | 削除できません | 삭제 불가 |
 | `TabCannotDeleteMessage` | The last tab cannot be deleted. | 不能删除最后一个标签页。 | 最後のタブは削除できません。 | 마지막 탭은 삭제할 수 없습니다. |
 | `DefaultTabName` | Main | 主 | Main | Main |

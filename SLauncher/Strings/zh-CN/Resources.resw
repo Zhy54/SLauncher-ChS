@@ -178,10 +178,7 @@
     <value>确定要删除此标签页吗？</value>
   </data>
   <data name="TabDeleteWithItemsMessage" xml:space="preserve">
-    <value>此标签页包含 {0} 个项目。
-删除标签页也会移除其中的所有项目。
-
-确定要继续吗？</value>
+    <value>此标签页包含 {0} 个项目。\n删除标签页也会移除其中的所有项目。\n\n确定要继续吗？</value>
   </data>
   <data name="TabCannotDeleteTitle" xml:space="preserve">
     <value>无法删除</value>
