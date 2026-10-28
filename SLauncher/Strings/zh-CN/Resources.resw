@@ -636,4 +636,13 @@
   <data name="Legacy_NullTabNameFallback" xml:space="preserve">
     <value>标签页 {tabIndex + 1}</value>
   </data>
+  <data name="AddFileDialog_Title" xml:space="preserve">
+    <value>添加文件</value>
+  </data>
+  <data name="AddFolderDialog_Title" xml:space="preserve">
+    <value>添加文件夹</value>
+  </data>
+  <data name="AddWebsiteDialog_Confirm" xml:space="preserve">
+    <value>添加网站</value>
+  </data>
 </root>
