@@ -1,4 +1,4 @@
-name: Simplified Chinese build check
+name: Validate clean upstream candidates
 on:
   push:
     branches:
@@ -11,9 +11,29 @@ jobs:
   build:
     runs-on: windows-2022
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - candidate: layout
+            commit: eaecbdc55d890e659540fb9630881404aeb6328b
+            locales: en-US,ja-JP,ko-KR
+          - candidate: translation
+            commit: 06caf4b0d07337226c22b162f7d58c4b0de019f2
+            locales: zh-CN
     steps:
-      - name: Check out validation branch
+      - name: Check out candidate source
         uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.commit }}
+          persist-credentials: false
+      - name: Check out test helpers
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: ci-support
+          sparse-checkout: .github/scripts
+          persist-credentials: false
       - name: Set up .NET 8
         uses: actions/setup-dotnet@v4
         with:
@@ -31,32 +51,25 @@ jobs:
       - name: Build Release x64
         shell: pwsh
         run: msbuild S-Launcher.sln /restore /p:Configuration=Release /p:Platform=x64 /verbosity:minimal
-      - name: Verify application and Chinese resources
+      - name: Verify executable and resources
         id: build-output
         shell: pwsh
         run: |
           $exe = Get-ChildItem -Path SLauncher/bin -Filter SLauncher.exe -Recurse -File | Select-Object -First 1
-          if ($null -eq $exe) { throw 'Build completed without SLauncher.exe in the output directory.' }
-          $zhResource = Join-Path $exe.Directory.FullName 'Strings/zh-CN/Resources.resw'
-          if (-not (Test-Path -LiteralPath $zhResource)) { throw "Chinese resource missing: $zhResource" }
+          if ($null -eq $exe) { throw 'No SLauncher.exe was produced.' }
+          foreach ($locale in ('${{ matrix.locales }}' -split ',')) {
+            $resource = Join-Path $exe.Directory.FullName "Strings/$locale/Resources.resw"
+            if (-not (Test-Path -LiteralPath $resource)) { throw "Resource missing: $resource" }
+          }
           "directory=$($exe.Directory.FullName)" >> $env:GITHUB_OUTPUT
-      - name: Save build output
-        uses: actions/upload-artifact@v4
-        with:
-          name: SLauncher-zh-CN-win-x64
-          path: ${{ steps.build-output.outputs.directory }}
-          if-no-files-found: error
-          retention-days: 3
-
-      - name: Inspect windows
-        continue-on-error: true
+      - name: Inspect windows at 150 percent text size
         shell: powershell
-        run: .github/scripts/capture-ui.ps1 -ExeDirectory "${{ steps.build-output.outputs.directory }}"
+        run: .\ci-support\.github\scripts\capture-ui.ps1 -ExeDirectory "${{ steps.build-output.outputs.directory }}" -Locales "${{ matrix.locales }}"
       - name: Save UI captures
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: SLauncher-ui-evidence
+          name: clean-candidate-ui-${{ matrix.candidate }}
           path: ui-evidence/
           if-no-files-found: ignore
           retention-days: 3

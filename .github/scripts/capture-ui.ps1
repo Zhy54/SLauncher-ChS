@@ -1,4 +1,4 @@
-﻿param([Parameter(Mandatory = $true)][string]$ExeDirectory)
+﻿param([Parameter(Mandatory = $true)][string]$ExeDirectory, [string]$Locales = 'en-US,zh-CN,ja-JP,ko-KR')
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
@@ -60,7 +60,7 @@ function Save-Window([IntPtr]$handle, [string]$path) {
 }
 
 $titles = @{ 'en-US' = 'Settings'; 'zh-CN' = '设置'; 'ja-JP' = '設定'; 'ko-KR' = '설정' }
-foreach ($locale in @('en-US', 'zh-CN', 'ja-JP', 'ko-KR')) {
+foreach ($locale in ($Locales -split ',')) {
     $settings = @{ language = $locale; startWithWindows = $false; minimizeToTray = $false }
     $settings | ConvertTo-Json | Set-Content -Encoding UTF8 (Join-Path $settingsDir 'userSettings.json')
     $proc = Start-Process -FilePath $exePath -WorkingDirectory $ExeDirectory -PassThru
