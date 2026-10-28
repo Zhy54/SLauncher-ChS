@@ -1,0 +1,39 @@
+name: Simplified Chinese build check
+on:
+  push:
+    branches:
+      - build/zh-cn-check-6812bee-20261028
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    steps:
+      - name: Check out validation branch
+        uses: actions/checkout@v4
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build Release x64
+        shell: pwsh
+        run: dotnet build S-Launcher.sln --configuration Release -p:Platform=x64 --verbosity minimal
+      - name: Verify application and Chinese resources
+        id: build-output
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path SLauncher/bin -Filter SLauncher.exe -Recurse -File | Select-Object -First 1
+          if ($null -eq $exe) { throw 'Build completed without SLauncher.exe in the output directory.' }
+          $zhResource = Join-Path $exe.Directory.FullName 'Strings/zh-CN/Resources.resw'
+          if (-not (Test-Path -LiteralPath $zhResource)) { throw "Chinese resource missing: $zhResource" }
+          "directory=$($exe.Directory.FullName)" >> $env:GITHUB_OUTPUT
+      - name: Save build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLauncher-zh-CN-win-x64
+          path: ${{ steps.build-output.outputs.directory }}
+          if-no-files-found: error
+          retention-days: 3
