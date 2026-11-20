@@ -178,7 +178,7 @@
     <value>Are you sure you want to delete this tab?</value>
   </data>
   <data name="TabDeleteWithItemsMessage" xml:space="preserve">
-    <value>This tab contains {0} items.\nDeleting the tab will also delete all items.\n\nAre you sure?</value>
+    <value>This tab contains {0} items.&#10;Deleting the tab will also delete all items.&#10;&#10;Are you sure?</value>
   </data>
   <data name="TabCannotDeleteTitle" xml:space="preserve">
     <value>Cannot Delete</value>
